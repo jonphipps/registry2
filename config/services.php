@@ -48,4 +48,13 @@ return [
         'redirect' => 'http://localhost/facebook/callback'
     ],
 
+    /*
+    | Acacha Llum services...
+    |
+    | See: https://github.com/acacha/llum
+    |
+    */
+    #llum_services
+
+
 ];

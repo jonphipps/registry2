@@ -23,7 +23,7 @@
 
                         <th>@lang('quickadmin.statement.fields.value')</th>
                         <th>@lang('quickadmin.statement.fields.translation')</th>
-                        <th>@lang('quickadmin.statement.fields.res')</th>
+                        <th>@lang('quickadmin.statement.fields.property')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -44,8 +44,8 @@ $(document).ready(function () {
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan
                 {data: 'value', name: 'value'},
-                {data: 'translation.', name: 'translation.'},
-                {data: 'res.label', name: 'res.label'},
+                {data: 'translation.version', name: 'translation.version'},
+                {data: 'property.label', name: 'property.label'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

@@ -13,12 +13,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property text $description
  * @property string $uri
  * @property string $project
+ * @property text $json
 */
 class Elementset extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'label', 'description', 'uri', 'project_id'];
+    protected $fillable = ['name', 'label', 'description', 'uri', 'json', 'project_id'];
     
     public static function boot()
     {

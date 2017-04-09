@@ -36,12 +36,60 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('res_id', 'Res', ['class' => 'control-label']) !!}
-                    {!! Form::select('res_id', $res, old('res_id'), ['class' => 'form-control select2']) !!}
+                    {!! Form::label('elementset_id', 'Element Sets', ['class' => 'control-label']) !!}
+                    {!! Form::select('elementset_id', $elementsets, old('elementset_id'), ['class' => 'form-control select2']) !!}
                     <p class="help-block"></p>
-                    @if($errors->has('res_id'))
+                    @if($errors->has('elementset_id'))
                         <p class="help-block">
-                            {{ $errors->first('res_id') }}
+                            {{ $errors->first('elementset_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('vocabulary_id', 'Vocabulary', ['class' => 'control-label']) !!}
+                    {!! Form::select('vocabulary_id', $vocabularies, old('vocabulary_id'), ['class' => 'form-control select2']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('vocabulary_id'))
+                        <p class="help-block">
+                            {{ $errors->first('vocabulary_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('property_id', 'Property', ['class' => 'control-label']) !!}
+                    {!! Form::select('property_id', $properties, old('property_id'), ['class' => 'form-control select2']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('property_id'))
+                        <p class="help-block">
+                            {{ $errors->first('property_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('concept_id', 'Concept', ['class' => 'control-label']) !!}
+                    {!! Form::select('concept_id', $concepts, old('concept_id'), ['class' => 'form-control select2']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('concept_id'))
+                        <p class="help-block">
+                            {{ $errors->first('concept_id') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('element_id', 'Element', ['class' => 'control-label']) !!}
+                    {!! Form::select('element_id', $elements, old('element_id'), ['class' => 'form-control select2']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('element_id'))
+                        <p class="help-block">
+                            {{ $errors->first('element_id') }}
                         </p>
                     @endif
                 </div>

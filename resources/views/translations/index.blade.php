@@ -21,7 +21,8 @@
                             <th style="text-align:center;"><input type="checkbox" id="select-all" /></th>
                         @endcan
 
-                        <th>@lang('quickadmin.translation.fields.res')</th>
+                        <th>@lang('quickadmin.translation.fields.concept')</th>
+                        <th>@lang('quickadmin.translation.fields.element')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -41,7 +42,8 @@ $(document).ready(function () {
                 @can('translation_delete')
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan
-                {data: 'res.label', name: 'res.label'},
+                {data: 'concept.label', name: 'concept.label'},
+                {data: 'element.label', name: 'element.label'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

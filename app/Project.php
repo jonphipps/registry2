@@ -10,15 +10,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App
  * @property string $name
  * @property string $label
+ * @property tinyInteger $is_private
  * @property string $repo
+ * @property string $url
  * @property text $description
- * @property string $uri
+ * @property text $license
 */
 class Project extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'label', 'repo', 'description', 'uri'];
+    protected $fillable = ['name', 'label', 'is_private', 'repo', 'url', 'description', 'license'];
     
     public static function boot()
     {

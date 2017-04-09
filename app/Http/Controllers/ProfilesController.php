@@ -42,6 +42,9 @@ class ProfilesController extends Controller
             $table->editColumn('label', function ($row) {
                 return $row->label ? $row->label : '';
             });
+            $table->editColumn('type', function ($row) {
+                return $row->type ? $row->type : '';
+            });
 
             return $table->make(true);
         }
@@ -58,8 +61,9 @@ class ProfilesController extends Controller
     {
         if (! Gate::allows('profile_create')) {
             return abort(401);
-        }
-        return view('profiles.create');
+        }        $enum_type = Profile::$enum_type;
+            
+        return view('profiles.create', compact('enum_type'));
     }
 
     /**
@@ -89,10 +93,11 @@ class ProfilesController extends Controller
     {
         if (! Gate::allows('profile_edit')) {
             return abort(401);
-        }
+        }        $enum_type = Profile::$enum_type;
+            
         $profile = Profile::findOrFail($id);
 
-        return view('profiles.edit', compact('profile'));
+        return view('profiles.edit', compact('profile', 'enum_type'));
     }
 
     /**
@@ -127,7 +132,7 @@ class ProfilesController extends Controller
         }
         $relations = [
             'properties' => \App\Property::where('profile_id', $id)->get(),
-            'res' => \App\Re::where('profile_id', $id)->get(),
+            'exports' => \App\Export::where('profile_id', $id)->get(),
         ];
 
         $profile = Profile::findOrFail($id);

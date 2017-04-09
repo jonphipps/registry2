@@ -50,6 +50,8 @@
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
                             <a href="{{ route('auth.password.reset') }}">Forgot your password?</a>
+                            <br>
+                            <a href="{{ route('auth.register') }}">Registration</a>
                         </div>
                     </div>
 
@@ -83,6 +85,7 @@
                             </a>
                         </div>
                     </div>
+
                 </form>
             </div>
         </div>

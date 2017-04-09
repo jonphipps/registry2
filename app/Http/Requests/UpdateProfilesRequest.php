@@ -26,6 +26,7 @@ class UpdateProfilesRequest extends FormRequest
             
             'name' => 'required',
             'label' => 'required',
+            'type' => 'required',
         ];
     }
 }

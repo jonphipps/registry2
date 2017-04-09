@@ -13,7 +13,7 @@
             @lang('quickadmin.qa_list')
         </div>
 
-        <div class="panel-body">
+        <div class="panel-body table-responsive">
             <table class="table table-bordered table-striped {{ count($content_categories) > 0 ? 'datatable' : '' }} @can('content_category_delete') dt-select @endcan">
                 <thead>
                     <tr>

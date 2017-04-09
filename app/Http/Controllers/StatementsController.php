@@ -25,7 +25,12 @@ class StatementsController extends Controller
         if (request()->ajax()) {
             $query = Statement::query();
             $query->with("translation");
-            $query->with("res");
+            $query->with("elementset");
+            $query->with("vocabulary");
+            $query->with("project");
+            $query->with("property");
+            $query->with("concept");
+            $query->with("element");
             $table = Datatables::of($query);
             $table->setRowAttr([
                 'data-entry-id' => '{{$id}}',
@@ -41,8 +46,23 @@ class StatementsController extends Controller
             $table->editColumn('value', function ($row) {
                 return $row->value ? $row->value : '';
             });
-            $table->editColumn('res.label', function ($row) {
-                return $row->res ? $row->res->label : '';
+            $table->editColumn('elementset.label', function ($row) {
+                return $row->elementset ? $row->elementset->label : '';
+            });
+            $table->editColumn('vocabulary.label', function ($row) {
+                return $row->vocabulary ? $row->vocabulary->label : '';
+            });
+            $table->editColumn('project.label', function ($row) {
+                return $row->project ? $row->project->label : '';
+            });
+            $table->editColumn('property.label', function ($row) {
+                return $row->property ? $row->property->label : '';
+            });
+            $table->editColumn('concept.label', function ($row) {
+                return $row->concept ? $row->concept->label : '';
+            });
+            $table->editColumn('element.label', function ($row) {
+                return $row->element ? $row->element->label : '';
             });
 
             return $table->make(true);
@@ -62,8 +82,13 @@ class StatementsController extends Controller
             return abort(401);
         }
         $relations = [
-            'translations' => \App\Translation::get()->pluck('', 'id')->prepend('Please select', ''),
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'translations' => \App\Translation::get()->pluck('version', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'projects' => \App\Project::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'properties' => \App\Property::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
         ];
 
         return view('statements.create', $relations);
@@ -98,8 +123,13 @@ class StatementsController extends Controller
             return abort(401);
         }
         $relations = [
-            'translations' => \App\Translation::get()->pluck('', 'id')->prepend('Please select', ''),
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'translations' => \App\Translation::get()->pluck('version', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'projects' => \App\Project::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'properties' => \App\Property::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
         ];
 
         $statement = Statement::findOrFail($id);
@@ -138,8 +168,13 @@ class StatementsController extends Controller
             return abort(401);
         }
         $relations = [
-            'translations' => \App\Translation::get()->pluck('', 'id')->prepend('Please select', ''),
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'translations' => \App\Translation::get()->pluck('version', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'projects' => \App\Project::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'properties' => \App\Property::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
         ];
 
         $statement = Statement::findOrFail($id);

@@ -13,113 +13,6 @@
             </li>
 
             
-            @can('project_access')
-            <li class="{{ $request->segment(1) == 'projects' ? 'active' : '' }}">
-                <a href="{{ route('projects.index') }}">
-                    <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.project.title')</span>
-                </a>
-            </li>
-            @endcan
-            
-            @can('metadata_management_access')
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.metadata-management.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                
-                @can('vocabulary_access')
-                <li class="{{ $request->segment(1) == 'vocabularies' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('vocabularies.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.vocabulary.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                @can('elementset_access')
-                <li class="{{ $request->segment(1) == 'elementsets' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('elementsets.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.elementset.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                @can('statement_access')
-                <li class="{{ $request->segment(1) == 'statements' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('statements.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.statement.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                </ul>
-            </li>
-            @endcan
-            @can('admin_access')
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-gears"></i>
-                    <span class="title">@lang('quickadmin.admin.title')</span>
-                    <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                
-                @can('profile_access')
-                <li class="{{ $request->segment(1) == 'profiles' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('profiles.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.profile.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                @can('property_access')
-                <li class="{{ $request->segment(1) == 'properties' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('properties.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.property.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                @can('re_access')
-                <li class="{{ $request->segment(1) == 'res' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('res.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.res.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                @can('translation_access')
-                <li class="{{ $request->segment(1) == 'translations' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('translations.index') }}">
-                            <i class="fa fa-gears"></i>
-                            <span class="title">
-                                @lang('quickadmin.translation.title')
-                            </span>
-                        </a>
-                    </li>
-                @endcan
-                </ul>
-            </li>
-            @endcan
             @can('user_management_access')
             <li class="treeview">
                 <a href="#">
@@ -164,43 +57,197 @@
                 </ul>
             </li>
             @endcan
-            @can('product_management_access')
+            @can('admin_access')
             <li class="treeview">
                 <a href="#">
-                    <i class="fa fa-shopping-cart"></i>
-                    <span class="title">@lang('quickadmin.product-management.title')</span>
+                    <i class="fa fa-gears"></i>
+                    <span class="title">@lang('quickadmin.admin.title')</span>
                     <span class="pull-right-container">
                         <i class="fa fa-angle-left pull-right"></i>
                     </span>
                 </a>
                 <ul class="treeview-menu">
                 
-                @can('product_category_access')
-                <li class="{{ $request->segment(1) == 'product_categories' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('product_categories.index') }}">
+                @can('profile_access')
+                <li class="{{ $request->segment(1) == 'profiles' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('profiles.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.profile.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('property_access')
+                <li class="{{ $request->segment(1) == 'properties' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('properties.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.property.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('language_access')
+                <li class="{{ $request->segment(1) == 'languages' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('languages.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.language.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('datatype_access')
+                <li class="{{ $request->segment(1) == 'datatypes' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('datatypes.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.datatype.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('prefix_access')
+                <li class="{{ $request->segment(1) == 'prefixes' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('prefixes.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.prefix.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('status_access')
+                <li class="{{ $request->segment(1) == 'statuses' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('statuses.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.status.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('batch_access')
+                <li class="{{ $request->segment(1) == 'batches' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('batches.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.batch.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                </ul>
+            </li>
+            @endcan
+            @can('metadata_management_access')
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gears"></i>
+                    <span class="title">@lang('quickadmin.metadata-management.title')</span>
+                    <span class="pull-right-container">
+                        <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                
+                @can('vocabulary_access')
+                <li class="{{ $request->segment(1) == 'vocabularies' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('vocabularies.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.vocabulary.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('elementset_access')
+                <li class="{{ $request->segment(1) == 'elementsets' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('elementsets.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.elementset.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('statement_access')
+                <li class="{{ $request->segment(1) == 'statements' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('statements.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.statement.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('translation_access')
+                <li class="{{ $request->segment(1) == 'translations' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('translations.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.translation.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('project_access')
+                <li class="{{ $request->segment(1) == 'projects' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('projects.index') }}">
                             <i class="fa fa-folder"></i>
                             <span class="title">
-                                @lang('quickadmin.product-categories.title')
+                                @lang('quickadmin.project.title')
                             </span>
                         </a>
                     </li>
                 @endcan
-                @can('product_tag_access')
-                <li class="{{ $request->segment(1) == 'product_tags' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('product_tags.index') }}">
-                            <i class="fa fa-tags"></i>
+                @can('element_access')
+                <li class="{{ $request->segment(1) == 'elements' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('elements.index') }}">
+                            <i class="fa fa-gears"></i>
                             <span class="title">
-                                @lang('quickadmin.product-tags.title')
+                                @lang('quickadmin.element.title')
                             </span>
                         </a>
                     </li>
                 @endcan
-                @can('product_access')
-                <li class="{{ $request->segment(1) == 'products' ? 'active active-sub' : '' }}">
-                        <a href="{{ route('products.index') }}">
-                            <i class="fa fa-shopping-cart"></i>
+                @can('concept_access')
+                <li class="{{ $request->segment(1) == 'concepts' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('concepts.index') }}">
+                            <i class="fa fa-gears"></i>
                             <span class="title">
-                                @lang('quickadmin.products.title')
+                                @lang('quickadmin.concept.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('release_access')
+                <li class="{{ $request->segment(1) == 'releases' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('releases.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.releases.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('export_access')
+                <li class="{{ $request->segment(1) == 'exports' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('exports.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.export.title')
+                            </span>
+                        </a>
+                    </li>
+                @endcan
+                @can('import_access')
+                <li class="{{ $request->segment(1) == 'imports' ? 'active active-sub' : '' }}">
+                        <a href="{{ route('imports.index') }}">
+                            <i class="fa fa-gears"></i>
+                            <span class="title">
+                                @lang('quickadmin.import.title')
                             </span>
                         </a>
                     </li>

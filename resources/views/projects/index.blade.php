@@ -22,8 +22,8 @@
                         @endcan
 
                         <th>@lang('quickadmin.project.fields.label')</th>
+                        <th>@lang('quickadmin.project.fields.is-private')</th>
                         <th>@lang('quickadmin.project.fields.description')</th>
-                        <th>@lang('quickadmin.project.fields.uri')</th>
                         <th>@lang('quickadmin.project.fields.members')</th>
                         <th>&nbsp;</th>
                     </tr>
@@ -45,8 +45,8 @@ $(document).ready(function () {
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan
                 {data: 'label', name: 'label'},
+                {data: 'is_private', name: 'is_private'},
                 {data: 'description', name: 'description'},
-                {data: 'uri', name: 'uri'},
                 {data: 'members.name', name: 'members.name'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}

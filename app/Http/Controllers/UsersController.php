@@ -113,11 +113,9 @@ class UsersController extends Controller
         $relations = [
             'roles' => \App\Role::get()->pluck('title', 'id')->prepend('Please select', ''),
             'user_actions' => \App\UserAction::where('user_id', $id)->get(),
+            'exports' => \App\Export::where('user_id', $id)->get(),
+            'imports' => \App\Import::where('user_id', $id)->get(),
             'elementsets' => \App\Elementset::whereHas('members',
-                    function ($query) use ($id) {
-                        $query->where('id', $id);
-                    })->get(),
-            'res' => \App\Re::whereHas('members',
                     function ($query) use ($id) {
                         $query->where('id', $id);
                     })->get(),

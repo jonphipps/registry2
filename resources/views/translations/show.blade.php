@@ -13,15 +13,31 @@
                 <div class="col-md-6">
                     <table class="table table-bordered table-striped">
                         <tr>
-                            <th>@lang('quickadmin.translation.fields.res')</th>
-                            <td>{{ $translation->res->label or '' }}</td>
+                            <th>@lang('quickadmin.translation.fields.version')</th>
+                            <td>{{ $translation->version }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.translation.fields.elementset')</th>
+                            <td>{{ $translation->elementset->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.translation.fields.vocabulary')</th>
+                            <td>{{ $translation->vocabulary->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.translation.fields.concept')</th>
+                            <td>{{ $translation->concept->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.translation.fields.element')</th>
+                            <td>{{ $translation->element->label or '' }}</td>
                         </tr>
                     </table>
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
-<li role="presentation" class="active"><a href="#statement" aria-controls="statement" role="tab" data-toggle="tab">Statement</a></li>
+<li role="presentation" class="active"><a href="#statement" aria-controls="statement" role="tab" data-toggle="tab">Statements</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -33,7 +49,7 @@
         <tr>
             <th>@lang('quickadmin.statement.fields.value')</th>
                         <th>@lang('quickadmin.statement.fields.translation')</th>
-                        <th>@lang('quickadmin.statement.fields.res')</th>
+                        <th>@lang('quickadmin.statement.fields.property')</th>
                         <th>&nbsp;</th>
         </tr>
     </thead>
@@ -43,8 +59,8 @@
             @foreach ($statements as $statement)
                 <tr data-entry-id="{{ $statement->id }}">
                     <td>{!! $statement->value !!}</td>
-                                <td>{{ $statement->translation-> or '' }}</td>
-                                <td>{{ $statement->res->label or '' }}</td>
+                                <td>{{ $statement->translation->version or '' }}</td>
+                                <td>{{ $statement->property->label or '' }}</td>
                                 <td>
                                     @can('statement_view')
                                     <a href="{{ route('statements.show',[$statement->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -66,7 +82,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>

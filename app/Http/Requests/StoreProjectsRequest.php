@@ -27,8 +27,10 @@ class StoreProjectsRequest extends FormRequest
             'label' => 'required',
             
             
-            'uri' => 'required|unique:projects,uri,'.$this->route('project'),
+            
+            
             'members.*' => 'exists:users,id',
+            
         ];
     }
 }

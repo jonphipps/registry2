@@ -25,6 +25,7 @@ class StoreProfilesRequest extends FormRequest
         return [
             'name' => 'required',
             'label' => 'required',
+            'type' => 'required',
         ];
     }
 }

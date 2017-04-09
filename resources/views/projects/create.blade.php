@@ -36,12 +36,37 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
+                    {!! Form::label('is_private', 'Is private', ['class' => 'control-label']) !!}
+                    {!! Form::hidden('is_private', 0) !!}
+                    {!! Form::checkbox('is_private', 1, false) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('is_private'))
+                        <p class="help-block">
+                            {{ $errors->first('is_private') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
                     {!! Form::label('repo', 'GitHub Repo', ['class' => 'control-label']) !!}
                     {!! Form::text('repo', old('repo'), ['class' => 'form-control', 'placeholder' => '']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('repo'))
                         <p class="help-block">
                             {{ $errors->first('repo') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('url', 'URL', ['class' => 'control-label']) !!}
+                    {!! Form::text('url', old('url'), ['class' => 'form-control', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('url'))
+                        <p class="help-block">
+                            {{ $errors->first('url') }}
                         </p>
                     @endif
                 </div>
@@ -60,24 +85,24 @@
             </div>
             <div class="row">
                 <div class="col-xs-12 form-group">
-                    {!! Form::label('uri', 'Uri*', ['class' => 'control-label']) !!}
-                    {!! Form::text('uri', old('uri'), ['class' => 'form-control', 'placeholder' => '']) !!}
-                    <p class="help-block"></p>
-                    @if($errors->has('uri'))
-                        <p class="help-block">
-                            {{ $errors->first('uri') }}
-                        </p>
-                    @endif
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-xs-12 form-group">
                     {!! Form::label('members', 'Members', ['class' => 'control-label']) !!}
                     {!! Form::select('members[]', $members, old('members'), ['class' => 'form-control select2', 'multiple' => 'multiple']) !!}
                     <p class="help-block"></p>
                     @if($errors->has('members'))
                         <p class="help-block">
                             {{ $errors->first('members') }}
+                        </p>
+                    @endif
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 form-group">
+                    {!! Form::label('license', 'License', ['class' => 'control-label']) !!}
+                    {!! Form::textarea('license', old('license'), ['class' => 'form-control ', 'placeholder' => '']) !!}
+                    <p class="help-block"></p>
+                    @if($errors->has('license'))
+                        <p class="help-block">
+                            {{ $errors->first('license') }}
                         </p>
                     @endif
                 </div>

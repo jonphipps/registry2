@@ -30,6 +30,7 @@ class UpdateVocabulariesRequest extends FormRequest
             'uri' => 'required|unique:vocabularies,uri,'.$this->route('vocabulary'),
             'members.*' => 'exists:users,id',
             'members.*' => 'exists:users,id',
+            'members.*' => 'exists:users,id',
         ];
     }
 }

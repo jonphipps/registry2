@@ -23,6 +23,7 @@
 
                         <th>@lang('quickadmin.profile.fields.name')</th>
                         <th>@lang('quickadmin.profile.fields.label')</th>
+                        <th>@lang('quickadmin.profile.fields.type')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -44,6 +45,7 @@ $(document).ready(function () {
                 @endcan
                 {data: 'name', name: 'name'},
                 {data: 'label', name: 'label'},
+                {data: 'type', name: 'type'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

@@ -38,10 +38,11 @@
 <ul class="nav nav-tabs" role="tablist">
     
 <li role="presentation" class="active"><a href="#useractions" aria-controls="useractions" role="tab" data-toggle="tab">User actions</a></li>
-<li role="presentation" class=""><a href="#elementset" aria-controls="elementset" role="tab" data-toggle="tab">Elementset</a></li>
-<li role="presentation" class=""><a href="#res" aria-controls="res" role="tab" data-toggle="tab">Res</a></li>
-<li role="presentation" class=""><a href="#vocabulary" aria-controls="vocabulary" role="tab" data-toggle="tab">Vocabulary</a></li>
-<li role="presentation" class=""><a href="#project" aria-controls="project" role="tab" data-toggle="tab">Project</a></li>
+<li role="presentation" class=""><a href="#export" aria-controls="export" role="tab" data-toggle="tab">Exports</a></li>
+<li role="presentation" class=""><a href="#import" aria-controls="import" role="tab" data-toggle="tab">Imports</a></li>
+<li role="presentation" class=""><a href="#elementset" aria-controls="elementset" role="tab" data-toggle="tab">Element Sets</a></li>
+<li role="presentation" class=""><a href="#vocabulary" aria-controls="vocabulary" role="tab" data-toggle="tab">Vocabularies</a></li>
+<li role="presentation" class=""><a href="#project" aria-controls="project" role="tab" data-toggle="tab">Projects</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -79,6 +80,94 @@
         @else
             <tr>
                 <td colspan="7">@lang('quickadmin.qa_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="export">
+<table class="table table-bordered table-striped {{ count($exports) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('quickadmin.export.fields.elementset')</th>
+                        <th>@lang('quickadmin.export.fields.selected-language')</th>
+                        <th>@lang('quickadmin.export.fields.published-english-version')</th>
+                        <th>@lang('quickadmin.export.fields.published-language-version')</th>
+                        <th>&nbsp;</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($exports) > 0)
+            @foreach ($exports as $export)
+                <tr data-entry-id="{{ $export->id }}">
+                    <td>{{ $export->elementset->label or '' }}</td>
+                                <td>{{ $export->selected_language }}</td>
+                                <td>{{ $export->published_english_version }}</td>
+                                <td>{{ $export->published_language_version }}</td>
+                                <td>
+                                    @can('export_view')
+                                    <a href="{{ route('exports.show',[$export->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @endcan
+                                    @can('export_edit')
+                                    <a href="{{ route('exports.edit',[$export->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    @endcan
+                                    @can('export_delete')
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['exports.destroy', $export->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="18">@lang('quickadmin.qa_no_entries_in_table')</td>
+            </tr>
+        @endif
+    </tbody>
+</table>
+</div>
+<div role="tabpanel" class="tab-pane " id="import">
+<table class="table table-bordered table-striped {{ count($imports) > 0 ? 'datatable' : '' }}">
+    <thead>
+        <tr>
+            <th>@lang('quickadmin.import.fields.elementset')</th>
+                        <th>&nbsp;</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @if (count($imports) > 0)
+            @foreach ($imports as $import)
+                <tr data-entry-id="{{ $import->id }}">
+                    <td>{{ $import->elementset->label or '' }}</td>
+                                <td>
+                                    @can('import_view')
+                                    <a href="{{ route('imports.show',[$import->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @endcan
+                                    @can('import_edit')
+                                    <a href="{{ route('imports.edit',[$import->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    @endcan
+                                    @can('import_delete')
+                                    {!! Form::open(array(
+                                        'style' => 'display: inline-block;',
+                                        'method' => 'DELETE',
+                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
+                                        'route' => ['imports.destroy', $import->id])) !!}
+                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
+                                    {!! Form::close() !!}
+                                    @endcan
+                                </td>
+                </tr>
+            @endforeach
+        @else
+            <tr>
+                <td colspan="16">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
@@ -125,56 +214,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
-            </tr>
-        @endif
-    </tbody>
-</table>
-</div>
-<div role="tabpanel" class="tab-pane " id="res">
-<table class="table table-bordered table-striped {{ count($res) > 0 ? 'datatable' : '' }}">
-    <thead>
-        <tr>
-            <th>@lang('quickadmin.res.fields.label')</th>
-                        <th>@lang('quickadmin.res.fields.description')</th>
-                        <th>@lang('quickadmin.res.fields.uri')</th>
-                        <th>@lang('quickadmin.res.fields.project')</th>
-                        <th>@lang('quickadmin.res.fields.profile')</th>
-                        <th>&nbsp;</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @if (count($res) > 0)
-            @foreach ($res as $re)
-                <tr data-entry-id="{{ $re->id }}">
-                    <td>{{ $re->label }}</td>
-                                <td>{!! $re->description !!}</td>
-                                <td>{{ $re->uri }}</td>
-                                <td>{{ $re->project->label or '' }}</td>
-                                <td>{{ $re->profile->label or '' }}</td>
-                                <td>
-                                    @can('re_view')
-                                    <a href="{{ route('res.show',[$re->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
-                                    @endcan
-                                    @can('re_edit')
-                                    <a href="{{ route('res.edit',[$re->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
-                                    @endcan
-                                    @can('re_delete')
-                                    {!! Form::open(array(
-                                        'style' => 'display: inline-block;',
-                                        'method' => 'DELETE',
-                                        'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['res.destroy', $re->id])) !!}
-                                    {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
-                                    {!! Form::close() !!}
-                                    @endcan
-                                </td>
-                </tr>
-            @endforeach
-        @else
-            <tr>
-                <td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="11">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
@@ -221,7 +261,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="11">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>
@@ -232,8 +272,8 @@
     <thead>
         <tr>
             <th>@lang('quickadmin.project.fields.label')</th>
+                        <th>@lang('quickadmin.project.fields.is-private')</th>
                         <th>@lang('quickadmin.project.fields.description')</th>
-                        <th>@lang('quickadmin.project.fields.uri')</th>
                         <th>@lang('quickadmin.project.fields.members')</th>
                         <th>&nbsp;</th>
         </tr>
@@ -244,8 +284,8 @@
             @foreach ($projects as $project)
                 <tr data-entry-id="{{ $project->id }}">
                     <td>{{ $project->label }}</td>
+                                <td>{{ Form::checkbox("is_private", 1, $project->is_private == 1, ["disabled"]) }}</td>
                                 <td>{!! $project->description !!}</td>
-                                <td>{{ $project->uri }}</td>
                                 <td>
                                     @foreach ($project->members as $singleMembers)
                                         <span class="label label-info label-many">{{ $singleMembers->name }}</span>
@@ -272,7 +312,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="10">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>

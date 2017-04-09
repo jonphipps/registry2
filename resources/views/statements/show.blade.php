@@ -18,11 +18,31 @@
                         </tr>
                         <tr>
                             <th>@lang('quickadmin.statement.fields.translation')</th>
-                            <td>{{ $statement->translation-> or '' }}</td>
+                            <td>{{ $statement->translation->version or '' }}</td>
                         </tr>
                         <tr>
-                            <th>@lang('quickadmin.statement.fields.res')</th>
-                            <td>{{ $statement->res->label or '' }}</td>
+                            <th>@lang('quickadmin.statement.fields.elementset')</th>
+                            <td>{{ $statement->elementset->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.statement.fields.vocabulary')</th>
+                            <td>{{ $statement->vocabulary->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.statement.fields.project')</th>
+                            <td>{{ $statement->project->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.statement.fields.property')</th>
+                            <td>{{ $statement->property->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.statement.fields.concept')</th>
+                            <td>{{ $statement->concept->label or '' }}</td>
+                        </tr>
+                        <tr>
+                            <th>@lang('quickadmin.statement.fields.element')</th>
+                            <td>{{ $statement->element->label or '' }}</td>
                         </tr>
                     </table>
                 </div>

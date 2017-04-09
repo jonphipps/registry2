@@ -43,14 +43,17 @@ class ProjectsController extends Controller
             $table->editColumn('label', function ($row) {
                 return $row->label ? $row->label : '';
             });
+            $table->editColumn('is_private', function ($row) {
+                return \Form::checkbox("is_private", 1, $row->is_private == 1, ["disabled"]);
+            });
             $table->editColumn('repo', function ($row) {
                 return $row->repo ? $row->repo : '';
             });
+            $table->editColumn('url', function ($row) {
+                return $row->url ? $row->url : '';
+            });
             $table->editColumn('description', function ($row) {
                 return $row->description ? $row->description : '';
-            });
-            $table->editColumn('uri', function ($row) {
-                return $row->uri ? $row->uri : '';
             });
             $table->editColumn('members.name', function ($row) {
                 if(count($row->members) == 0) {
@@ -59,6 +62,9 @@ class ProjectsController extends Controller
                 
                 return '<span class="label label-info label-many">' . implode('</span><span class="label label-info label-many"> ',
                         $row->members->pluck('name')->toArray()) . '</span>';
+            });
+            $table->editColumn('license', function ($row) {
+                return $row->license ? $row->license : '';
             });
 
             return $table->make(true);
@@ -155,8 +161,9 @@ class ProjectsController extends Controller
         }
         $relations = [
             'members' => \App\User::get()->pluck('name', 'id'),
+            'releases' => \App\Release::where('project_id', $id)->get(),
+            'statements' => \App\Statement::where('project_id', $id)->get(),
             'elementsets' => \App\Elementset::where('project_id', $id)->get(),
-            'res' => \App\Re::where('project_id', $id)->get(),
             'vocabularies' => \App\Vocabulary::where('project_id', $id)->get(),
         ];
 

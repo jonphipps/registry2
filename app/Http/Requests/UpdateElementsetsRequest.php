@@ -30,6 +30,7 @@ class UpdateElementsetsRequest extends FormRequest
             'uri' => 'required|unique:elementsets,uri,'.$this->route('elementset'),
             'members.*' => 'exists:users,id',
             'members.*' => 'exists:users,id',
+            'members.*' => 'exists:users,id',
         ];
     }
 }

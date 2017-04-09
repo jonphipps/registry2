@@ -20,13 +20,17 @@
                             <th>@lang('quickadmin.profile.fields.label')</th>
                             <td>{{ $profile->label }}</td>
                         </tr>
+                        <tr>
+                            <th>@lang('quickadmin.profile.fields.type')</th>
+                            <td>{{ $profile->type }}</td>
+                        </tr>
                     </table>
                 </div>
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
-<li role="presentation" class="active"><a href="#property" aria-controls="property" role="tab" data-toggle="tab">Property</a></li>
-<li role="presentation" class=""><a href="#res" aria-controls="res" role="tab" data-toggle="tab">Res</a></li>
+<li role="presentation" class="active"><a href="#property" aria-controls="property" role="tab" data-toggle="tab">Properties</a></li>
+<li role="presentation" class=""><a href="#export" aria-controls="export" role="tab" data-toggle="tab">Exports</a></li>
 </ul>
 
 <!-- Tab panes -->
@@ -37,16 +41,8 @@
     <thead>
         <tr>
             <th>@lang('quickadmin.property.fields.name')</th>
-                        <th>@lang('quickadmin.property.fields.label')</th>
                         <th>@lang('quickadmin.property.fields.uri')</th>
                         <th>@lang('quickadmin.property.fields.profile')</th>
-                        <th>@lang('quickadmin.property.fields.in-list')</th>
-                        <th>@lang('quickadmin.property.fields.in-show')</th>
-                        <th>@lang('quickadmin.property.fields.in-edit')</th>
-                        <th>@lang('quickadmin.property.fields.in-create')</th>
-                        <th>@lang('quickadmin.property.fields.in-rdf')</th>
-                        <th>@lang('quickadmin.property.fields.in-xml')</th>
-                        <th>@lang('quickadmin.property.fields.symmetric-uri')</th>
                         <th>&nbsp;</th>
         </tr>
     </thead>
@@ -56,16 +52,8 @@
             @foreach ($properties as $property)
                 <tr data-entry-id="{{ $property->id }}">
                     <td>{{ $property->name }}</td>
-                                <td>{{ $property->label }}</td>
                                 <td>{{ $property->uri }}</td>
                                 <td>{{ $property->profile->label or '' }}</td>
-                                <td>{{ Form::checkbox("in_list", 1, $property->in_list == 1, ["disabled"]) }}</td>
-                                <td>{{ Form::checkbox("in_show", 1, $property->in_show == 1, ["disabled"]) }}</td>
-                                <td>{{ Form::checkbox("in_edit", 1, $property->in_edit == 1, ["disabled"]) }}</td>
-                                <td>{{ Form::checkbox("in_create", 1, $property->in_create == 1, ["disabled"]) }}</td>
-                                <td>{{ Form::checkbox("in_rdf", 1, $property->in_rdf == 1, ["disabled"]) }}</td>
-                                <td>{{ Form::checkbox("in_xml", 1, $property->in_xml == 1, ["disabled"]) }}</td>
-                                <td>{{ $property->symmetric_uri }}</td>
                                 <td>
                                     @can('property_view')
                                     <a href="{{ route('properties.show',[$property->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
@@ -93,41 +81,39 @@
     </tbody>
 </table>
 </div>
-<div role="tabpanel" class="tab-pane " id="res">
-<table class="table table-bordered table-striped {{ count($res) > 0 ? 'datatable' : '' }}">
+<div role="tabpanel" class="tab-pane " id="export">
+<table class="table table-bordered table-striped {{ count($exports) > 0 ? 'datatable' : '' }}">
     <thead>
         <tr>
-            <th>@lang('quickadmin.res.fields.label')</th>
-                        <th>@lang('quickadmin.res.fields.description')</th>
-                        <th>@lang('quickadmin.res.fields.uri')</th>
-                        <th>@lang('quickadmin.res.fields.project')</th>
-                        <th>@lang('quickadmin.res.fields.profile')</th>
+            <th>@lang('quickadmin.export.fields.elementset')</th>
+                        <th>@lang('quickadmin.export.fields.selected-language')</th>
+                        <th>@lang('quickadmin.export.fields.published-english-version')</th>
+                        <th>@lang('quickadmin.export.fields.published-language-version')</th>
                         <th>&nbsp;</th>
         </tr>
     </thead>
 
     <tbody>
-        @if (count($res) > 0)
-            @foreach ($res as $re)
-                <tr data-entry-id="{{ $re->id }}">
-                    <td>{{ $re->label }}</td>
-                                <td>{!! $re->description !!}</td>
-                                <td>{{ $re->uri }}</td>
-                                <td>{{ $re->project->label or '' }}</td>
-                                <td>{{ $re->profile->label or '' }}</td>
+        @if (count($exports) > 0)
+            @foreach ($exports as $export)
+                <tr data-entry-id="{{ $export->id }}">
+                    <td>{{ $export->elementset->label or '' }}</td>
+                                <td>{{ $export->selected_language }}</td>
+                                <td>{{ $export->published_english_version }}</td>
+                                <td>{{ $export->published_language_version }}</td>
                                 <td>
-                                    @can('re_view')
-                                    <a href="{{ route('res.show',[$re->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
+                                    @can('export_view')
+                                    <a href="{{ route('exports.show',[$export->id]) }}" class="btn btn-xs btn-primary">@lang('quickadmin.qa_view')</a>
                                     @endcan
-                                    @can('re_edit')
-                                    <a href="{{ route('res.edit',[$re->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
+                                    @can('export_edit')
+                                    <a href="{{ route('exports.edit',[$export->id]) }}" class="btn btn-xs btn-info">@lang('quickadmin.qa_edit')</a>
                                     @endcan
-                                    @can('re_delete')
+                                    @can('export_delete')
                                     {!! Form::open(array(
                                         'style' => 'display: inline-block;',
                                         'method' => 'DELETE',
                                         'onsubmit' => "return confirm('".trans("quickadmin.qa_are_you_sure")."');",
-                                        'route' => ['res.destroy', $re->id])) !!}
+                                        'route' => ['exports.destroy', $export->id])) !!}
                                     {!! Form::submit(trans('quickadmin.qa_delete'), array('class' => 'btn btn-xs btn-danger')) !!}
                                     {!! Form::close() !!}
                                     @endcan
@@ -136,7 +122,7 @@
             @endforeach
         @else
             <tr>
-                <td colspan="12">@lang('quickadmin.qa_no_entries_in_table')</td>
+                <td colspan="18">@lang('quickadmin.qa_no_entries_in_table')</td>
             </tr>
         @endif
     </tbody>

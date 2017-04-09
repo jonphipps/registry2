@@ -61,6 +61,9 @@ class VocabulariesController extends Controller
             $table->editColumn('project.label', function ($row) {
                 return $row->project ? $row->project->label : '';
             });
+            $table->editColumn('json', function ($row) {
+                return $row->json ? $row->json : '';
+            });
 
             return $table->make(true);
         }
@@ -159,6 +162,10 @@ class VocabulariesController extends Controller
         $relations = [
             'members' => \App\User::get()->pluck('name', 'id'),
             'projects' => \App\Project::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'exports' => \App\Export::where('vocabulary_id', $id)->get(),
+            'translations' => \App\Translation::where('vocabulary_id', $id)->get(),
+            'imports' => \App\Import::where('vocabulary_id', $id)->get(),
+            'statements' => \App\Statement::where('vocabulary_id', $id)->get(),
         ];
 
         $vocabulary = Vocabulary::findOrFail($id);

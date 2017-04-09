@@ -61,6 +61,9 @@ class ElementsetsController extends Controller
             $table->editColumn('project.label', function ($row) {
                 return $row->project ? $row->project->label : '';
             });
+            $table->editColumn('json', function ($row) {
+                return $row->json ? $row->json : '';
+            });
 
             return $table->make(true);
         }
@@ -159,6 +162,10 @@ class ElementsetsController extends Controller
         $relations = [
             'members' => \App\User::get()->pluck('name', 'id'),
             'projects' => \App\Project::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'translations' => \App\Translation::where('elementset_id', $id)->get(),
+            'statements' => \App\Statement::where('elementset_id', $id)->get(),
+            'exports' => \App\Export::where('elementset_id', $id)->get(),
+            'imports' => \App\Import::where('elementset_id', $id)->get(),
         ];
 
         $elementset = Elementset::findOrFail($id);

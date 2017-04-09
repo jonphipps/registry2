@@ -10,12 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @package App
  * @property string $name
  * @property string $label
+ * @property enum $type
 */
 class Profile extends Model
 {
     use SoftDeletes;
 
-    protected $fillable = ['name', 'label'];
+    protected $fillable = ['name', 'label', 'type'];
     
     public static function boot()
     {
@@ -23,5 +24,7 @@ class Profile extends Model
 
         Profile::observe(new \App\Observers\UserActionsObserver);
     }
+
+    public static $enum_type = ["Element Set" => "Element Set", "Vocabulary" => "Vocabulary"];
     
 }

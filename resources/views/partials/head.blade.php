@@ -22,12 +22,10 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
-
+<link rel="stylesheet" href="{{ url('quickadmin/css') }}/select2.min.css"/>
 <link href="{{ url('adminlte/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 <link href="{{ url('adminlte/css/AdminLTE.min.css') }}" rel="stylesheet">
 <link href="{{ url('adminlte/css/skins/skin-blue.min.css') }}" rel="stylesheet">
-<link rel="stylesheet"
-      href="{{ url('quickadmin/css') }}/select2.min.css"/>
 <link rel="stylesheet"
       href="https://code.jquery.com/ui/1.11.3/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet"

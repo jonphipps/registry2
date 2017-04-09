@@ -25,7 +25,7 @@
             </div><!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
     
-<li role="presentation" class="active"><a href="#contentpages" aria-controls="contentpages" role="tab" data-toggle="tab">Content pages</a></li>
+<li role="presentation" class="active"><a href="#contentpages" aria-controls="contentpages" role="tab" data-toggle="tab">Pages</a></li>
 </ul>
 
 <!-- Tab panes -->

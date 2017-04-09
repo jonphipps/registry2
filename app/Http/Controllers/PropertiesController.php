@@ -154,6 +154,7 @@ class PropertiesController extends Controller
         }
         $relations = [
             'profiles' => \App\Profile::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'statements' => \App\Statement::where('property_id', $id)->get(),
         ];
 
         $property = Property::findOrFail($id);

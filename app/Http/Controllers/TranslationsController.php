@@ -24,7 +24,10 @@ class TranslationsController extends Controller
         
         if (request()->ajax()) {
             $query = Translation::query();
-            $query->with("res");
+            $query->with("elementset");
+            $query->with("vocabulary");
+            $query->with("concept");
+            $query->with("element");
             $table = Datatables::of($query);
             $table->setRowAttr([
                 'data-entry-id' => '{{$id}}',
@@ -37,8 +40,20 @@ class TranslationsController extends Controller
 
                 return view('actionsTemplate', compact('row', 'gateKey', 'routeKey'));
             });
-            $table->editColumn('res.label', function ($row) {
-                return $row->res ? $row->res->label : '';
+            $table->editColumn('version', function ($row) {
+                return $row->version ? $row->version : '';
+            });
+            $table->editColumn('elementset.label', function ($row) {
+                return $row->elementset ? $row->elementset->label : '';
+            });
+            $table->editColumn('vocabulary.label', function ($row) {
+                return $row->vocabulary ? $row->vocabulary->label : '';
+            });
+            $table->editColumn('concept.label', function ($row) {
+                return $row->concept ? $row->concept->label : '';
+            });
+            $table->editColumn('element.label', function ($row) {
+                return $row->element ? $row->element->label : '';
             });
 
             return $table->make(true);
@@ -58,7 +73,10 @@ class TranslationsController extends Controller
             return abort(401);
         }
         $relations = [
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
         ];
 
         return view('translations.create', $relations);
@@ -93,7 +111,10 @@ class TranslationsController extends Controller
             return abort(401);
         }
         $relations = [
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
         ];
 
         $translation = Translation::findOrFail($id);
@@ -132,7 +153,10 @@ class TranslationsController extends Controller
             return abort(401);
         }
         $relations = [
-            'res' => \App\Re::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elementsets' => \App\Elementset::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'vocabularies' => \App\Vocabulary::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'concepts' => \App\Concept::get()->pluck('label', 'id')->prepend('Please select', ''),
+            'elements' => \App\Element::get()->pluck('label', 'id')->prepend('Please select', ''),
             'statements' => \App\Statement::where('translation_id', $id)->get(),
         ];
 

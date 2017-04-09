@@ -22,16 +22,8 @@
                         @endcan
 
                         <th>@lang('quickadmin.property.fields.name')</th>
-                        <th>@lang('quickadmin.property.fields.label')</th>
                         <th>@lang('quickadmin.property.fields.uri')</th>
                         <th>@lang('quickadmin.property.fields.profile')</th>
-                        <th>@lang('quickadmin.property.fields.in-list')</th>
-                        <th>@lang('quickadmin.property.fields.in-show')</th>
-                        <th>@lang('quickadmin.property.fields.in-edit')</th>
-                        <th>@lang('quickadmin.property.fields.in-create')</th>
-                        <th>@lang('quickadmin.property.fields.in-rdf')</th>
-                        <th>@lang('quickadmin.property.fields.in-xml')</th>
-                        <th>@lang('quickadmin.property.fields.symmetric-uri')</th>
                         <th>&nbsp;</th>
                     </tr>
                 </thead>
@@ -52,16 +44,8 @@ $(document).ready(function () {
                     {data: 'massDelete', name: 'id', searchable: false, sortable: false},
                 @endcan
                 {data: 'name', name: 'name'},
-                {data: 'label', name: 'label'},
                 {data: 'uri', name: 'uri'},
                 {data: 'profile.label', name: 'profile.label'},
-                {data: 'in_list', name: 'in_list'},
-                {data: 'in_show', name: 'in_show'},
-                {data: 'in_edit', name: 'in_edit'},
-                {data: 'in_create', name: 'in_create'},
-                {data: 'in_rdf', name: 'in_rdf'},
-                {data: 'in_xml', name: 'in_xml'},
-                {data: 'symmetric_uri', name: 'symmetric_uri'},
                 
                 {data: 'actions', name: 'actions', searchable: false, sortable: false}
             ];

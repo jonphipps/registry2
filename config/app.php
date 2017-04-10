@@ -179,14 +179,13 @@ return [
         /*
          * Package Service Providers...
          */
-
-        Intervention\Image\ImageServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        Yajra\Datatables\DatatablesServiceProvider::class,
-        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
+        Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 
-        /*
+      /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -200,8 +199,6 @@ return [
          *
          * See: https://github.com/acacha/llum
          */
-        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
-        Barryvdh\Debugbar\ServiceProvider::class,
         #llum_providers
 
     ],
